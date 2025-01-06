@@ -1,5 +1,6 @@
 package com.mateuszjanczak
 
+import com.mateuszjanczak.scheduling.configureTaskScheduling
 import io.ktor.server.application.*
 
 fun main(args: Array<String>) {
@@ -8,4 +9,5 @@ fun main(args: Array<String>) {
 
 fun Application.module() {
     configureRouting()
+    configureTaskScheduling()
 }

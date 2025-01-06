@@ -1,5 +1,7 @@
 val kotlin_version: String by project
+val ktor_version: String by project
 val logback_version: String by project
+val ktor_scheduling_version: String by project
 
 plugins {
     kotlin("jvm") version "2.1.0"
@@ -21,10 +23,12 @@ repositories {
 }
 
 dependencies {
-    implementation("io.ktor:ktor-server-core-jvm")
-    implementation("io.ktor:ktor-server-netty-jvm")
+    implementation("io.ktor:ktor-server-core-jvm:$ktor_version")
+    implementation("io.ktor:ktor-server-netty-jvm:$ktor_version")
+    implementation("io.ktor:ktor-server-config-yaml-jvm:$ktor_version")
     implementation("ch.qos.logback:logback-classic:$logback_version")
-    implementation("io.ktor:ktor-server-config-yaml-jvm")
-    testImplementation("io.ktor:ktor-server-test-host-jvm")
+    implementation("io.github.flaxoos:ktor-server-task-scheduling-core:$ktor_scheduling_version")
+
+    testImplementation("io.ktor:ktor-server-test-host-jvm:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 }
