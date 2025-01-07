@@ -6,6 +6,7 @@ val astra_version: String by project
 plugins {
     kotlin("jvm") version "2.1.0"
     id("io.ktor.plugin") version "3.0.3"
+    id("org.jetbrains.kotlin.plugin.serialization") version "2.1.0"
 }
 
 group = "com.mateuszjanczak"
@@ -26,6 +27,10 @@ dependencies {
     implementation("io.ktor:ktor-server-core-jvm:$ktor_version")
     implementation("io.ktor:ktor-server-netty-jvm:$ktor_version")
     implementation("io.ktor:ktor-server-config-yaml-jvm:$ktor_version")
+    implementation("io.ktor:ktor-client-core:$ktor_version")
+    implementation("io.ktor:ktor-client-cio:$ktor_version")
+    implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
     implementation("ch.qos.logback:logback-classic:$logback_version")
     implementation("com.datastax.astra:astra-sdk:$astra_version")
 
