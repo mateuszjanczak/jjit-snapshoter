@@ -20,5 +20,6 @@ jobs:
       - name: Build and deploy the application to Koyeb
         uses: koyeb/action-git-deploy@v1
         with:
+          service-instance-type: free
           git-builder: docker
           service-ports: "8080:http"
