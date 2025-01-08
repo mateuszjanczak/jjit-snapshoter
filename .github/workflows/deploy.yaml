@@ -21,6 +21,7 @@ jobs:
         uses: koyeb/action-git-deploy@v1
         with:
           git-builder: docker
+          service-checks: "8080:http:/"
           service-instance-type: free
           service-ports: "8080:http"
           service-routes: "/:8080"
