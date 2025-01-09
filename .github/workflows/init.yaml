@@ -1,0 +1,72 @@
+name: Init
+
+on:
+  push:
+    tags:
+      - 'init'
+
+jobs:
+  deploy:
+    concurrency:
+      group: "${{ github.ref_name }}"
+      cancel-in-progress: true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install and configure the Koyeb CLI
+        uses: koyeb-community/koyeb-actions@v2
+        with:
+          api_token: "${{ secrets.KOYEB_API_TOKEN }}"
+
+      - name: Create application secret
+        uses: koyeb/action-git-deploy/secret@v1
+        with:
+          secret-name: ASTRA_CLIENT_ID
+          secret-value: "${{ secrets.ASTRA_CLIENT_ID }}"
+
+      - name: Create application secret
+        uses: koyeb/action-git-deploy/secret@v1
+        with:
+          secret-name: ASTRA_CLIENT_SECRET
+          secret-value: "${{ secrets.ASTRA_CLIENT_SECRET }}"
+
+      - name: Create application secret
+        uses: koyeb/action-git-deploy/secret@v1
+        with:
+          secret-name: ASTRA_TOKEN
+          secret-value: "${{ secrets.ASTRA_TOKEN }}"
+
+      - name: Create application secret
+        uses: koyeb/action-git-deploy/secret@v1
+        with:
+          secret-name: ASTRA_DATABASE_ID
+          secret-value: "${{ secrets.ASTRA_DATABASE_ID }}"
+
+      - name: Create application secret
+        uses: koyeb/action-git-deploy/secret@v1
+        with:
+          secret-name: ASTRA_DATABASE_REGION
+          secret-value: "${{ secrets.ASTRA_DATABASE_REGION }}"
+
+      - name: Create application secret
+        uses: koyeb/action-git-deploy/secret@v1
+        with:
+          secret-name: ASTRA_CQL_KEYSPACE
+          secret-value: "${{ secrets.ASTRA_CQL_KEYSPACE }}"
+
+      - name: Create application secret
+        uses: koyeb/action-git-deploy/secret@v1
+        with:
+          secret-name: ASTRA_NAMESPACE
+          secret-value: "${{ secrets.ASTRA_NAMESPACE }}"
+
+      - name: Create application secret
+        uses: koyeb/action-git-deploy/secret@v1
+        with:
+          secret-name: ASTRA_COLLECTION
+          secret-value: "${{ secrets.ASTRA_COLLECTION }}"
+
+      - name: Create application secret
+        uses: koyeb/action-git-deploy/secret@v1
+        with:
+          secret-name: API_BASE_URL
+          secret-value: "${{ secrets.API_BASE_URL }}"
