@@ -20,44 +20,14 @@ jobs:
       - name: Create application secret
         uses: koyeb/action-git-deploy/secret@v1
         with:
-          secret-name: ASTRA_CLIENT_ID
-          secret-value: "${{ secrets.ASTRA_CLIENT_ID }}"
-
-      - name: Create application secret
-        uses: koyeb/action-git-deploy/secret@v1
-        with:
-          secret-name: ASTRA_CLIENT_SECRET
-          secret-value: "${{ secrets.ASTRA_CLIENT_SECRET }}"
-
-      - name: Create application secret
-        uses: koyeb/action-git-deploy/secret@v1
-        with:
           secret-name: ASTRA_TOKEN
           secret-value: "${{ secrets.ASTRA_TOKEN }}"
 
       - name: Create application secret
         uses: koyeb/action-git-deploy/secret@v1
         with:
-          secret-name: ASTRA_DATABASE_ID
-          secret-value: "${{ secrets.ASTRA_DATABASE_ID }}"
-
-      - name: Create application secret
-        uses: koyeb/action-git-deploy/secret@v1
-        with:
-          secret-name: ASTRA_DATABASE_REGION
-          secret-value: "${{ secrets.ASTRA_DATABASE_REGION }}"
-
-      - name: Create application secret
-        uses: koyeb/action-git-deploy/secret@v1
-        with:
-          secret-name: ASTRA_CQL_KEYSPACE
-          secret-value: "${{ secrets.ASTRA_CQL_KEYSPACE }}"
-
-      - name: Create application secret
-        uses: koyeb/action-git-deploy/secret@v1
-        with:
-          secret-name: ASTRA_NAMESPACE
-          secret-value: "${{ secrets.ASTRA_NAMESPACE }}"
+          secret-name: ASTRA_DATABASE
+          secret-value: "${{ secrets.ASTRA_DATABASE }}"
 
       - name: Create application secret
         uses: koyeb/action-git-deploy/secret@v1

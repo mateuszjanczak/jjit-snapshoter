@@ -33,7 +33,7 @@ dependencies {
     implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
     implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
     implementation("ch.qos.logback:logback-classic:$logback_version")
-    implementation("com.datastax.astra:astra-sdk:$astra_version")
+    implementation("com.datastax.astra:astra-db-java:$astra_version")
     implementation("com.cronutils:cron-utils:$cron_version")
 
     testImplementation("io.ktor:ktor-server-test-host-jvm:$ktor_version")
