@@ -19,7 +19,7 @@ class ApiClient(private val httpClient: HttpClient, private val baseUrl: String)
 
     fun getData(): List<JsonObject> {
         return try {
-            generateSequence(0) { it + CURSOR_SIZE }
+            generateSequence(1) { it + 1 }
                 .map { cursor -> buildUrl(cursor) }
                 .map { url ->
                     runBlocking<ApiResponse> {
