@@ -11,13 +11,25 @@ class ApiClient(private val httpClient: HttpClient, private val baseUrl: String)
 
     companion object {
         const val CURSOR_SIZE = 100
-        const val RELATIVE_URL = "/v2/user-panel/offers/by-cursor?from=%CURSOR%&itemsCount=%CURSOR_SIZE%"
+        const val RELATIVE_URL = "/v2/user-panel/offers/by-cursor?page=%CURSOR%&perPage=%CURSOR_SIZE%"
+        val REQUEST_HEADERS = mapOf("version" to "2")
     }
 
     fun getData(): List<JsonObject> {
         return generateSequence(0) { it + CURSOR_SIZE }
             .map { cursor -> buildUrl(cursor) }
-            .map { url -> runBlocking<ApiResponse> { httpClient.get(url).body() } }
+            .map { url ->
+                runBlocking<ApiResponse> {
+                    httpClient.get(url) {
+                        REQUEST_HEADERS.map { (key, value) ->
+                            header(
+                                key,
+                                value
+                            )
+                        }
+                    }.body()
+                }
+            }
             .takeWhile { it.data.isNotEmpty() }
             .flatMap { it.data }
             .toList()
