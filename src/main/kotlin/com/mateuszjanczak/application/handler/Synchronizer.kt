@@ -2,6 +2,7 @@ package com.mateuszjanczak.application.handler
 
 import com.mateuszjanczak.infrastructure.astradb.DocumentClient
 import com.mateuszjanczak.infrastructure.justjoinit.ApiClient
+import io.ktor.util.logging.*
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 import java.time.Instant
@@ -13,9 +14,13 @@ class Synchronizer(
     private val documentClient: DocumentClient
 ) {
 
+    companion object {
+        val LOG = KtorSimpleLogger(this::class.qualifiedName!!)
+    }
+
     fun execute() {
-        val data = apiClient.getData().map { addTimestampToItem(it) }
-        documentClient.store(data)
+        val data = apiClient.getData().map { addTimestampToItem(it) }.also { LOG.info("Fetched ${it.size} items") }
+        documentClient.store(data).also { LOG.info("Stored ${data.size} items") }
     }
 
     private fun addTimestampToItem(item: JsonObject): JsonObject {
