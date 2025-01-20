@@ -11,4 +11,5 @@
     <logger name="com.datastax" level="INFO"/>
     <logger name="io.netty" level="INFO"/>
     <logger name="io.ktor" level="INFO"/>
+    <logger name="com.evanlennick.retry4j" level="INFO"/>
 </configuration>

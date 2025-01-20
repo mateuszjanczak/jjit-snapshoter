@@ -24,12 +24,9 @@ class Synchronizer(
     }
 
     private fun addTimestampToItem(item: JsonObject): JsonObject {
-        return JsonObject(
-            item.toMap() + ("syncTime" to JsonPrimitive(
-                DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-                    .withZone(ZoneOffset.UTC)
-                    .format(Instant.now())
-            ))
-        )
+        val syncTime = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+            .withZone(ZoneOffset.UTC)
+            .format(Instant.now())
+        return JsonObject(item.toMap() + ("syncTime" to JsonPrimitive(syncTime)))
     }
 }

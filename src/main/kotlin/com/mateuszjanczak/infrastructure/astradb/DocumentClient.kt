@@ -2,6 +2,7 @@ package com.mateuszjanczak.infrastructure.astradb
 
 import com.datastax.astra.client.Collection
 import com.datastax.astra.client.model.Document
+import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import java.util.*
 
@@ -14,7 +15,9 @@ class DocumentClient(
 
     fun store(json: List<JsonObject>) {
         json.chunked(BATCH_SIZE).map { list ->
-            list.map { item -> Document(item).id(UUID.randomUUID().toString()) }
+            list.map { item ->
+                Document.parse(Json.encodeToString(JsonObject.serializer(), item)).id(UUID.randomUUID().toString())
+            }
         }.map { astraClient.insertMany(it) }
     }
 }

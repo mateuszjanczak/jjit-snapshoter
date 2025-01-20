@@ -23,7 +23,7 @@ fun Application.configureRouting() {
 fun Application.configureScheduler() {
     scheduler {
         task {
-            cron("0 */6 * * *") { // At minute 0 past every 6th hour.
+            cron("0 0 * * *") { // At 00:00.
                 synchronizer.execute()
             }
         }
