@@ -9,6 +9,7 @@ import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
+import kotlinx.serialization.json.Json
 
 fun Application.bootstrap() {
     Bootstrap
@@ -29,7 +30,12 @@ object Bootstrap {
         astraClient
     )
 
-    private val apiClient = ApiClient(httpClient, System.getenv("API_BASE_URL") ?: error("API_BASE_URL not set"))
+    private val jsonParser = Json {
+        ignoreUnknownKeys = true
+    }
+
+    private val apiClient =
+        ApiClient(httpClient, jsonParser, System.getenv("API_BASE_URL") ?: error("API_BASE_URL not set"))
 
     val synchronizer = Synchronizer(apiClient, documentClient)
 }
